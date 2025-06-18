@@ -10,6 +10,7 @@ import AfterFaq from "./components/AfterFaq";
 import HomeFooter from "./components/HomeFooter";
 import Services from "./components/Services";
 import Projects from "./components/Projects"; // Import Projects component
+import ContactUs from './components/ContactUs';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         } />
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </Router>
   );
