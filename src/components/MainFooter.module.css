@@ -1,0 +1,48 @@
+.footer {
+  background-color: #e2e2e2;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.column {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.column h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.column li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.column li:hover {
+  color: #007bff;
+}
+
+.copy {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #666;
+}

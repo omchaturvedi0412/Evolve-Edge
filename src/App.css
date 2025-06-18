@@ -1,3 +1,5 @@
+/* Keep existing React styles */
+
 .App {
   text-align: center;
 }
@@ -22,6 +24,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-top: 80px; /* Added for navbar space */
 }
 
 .App-link {
@@ -35,4 +38,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* New additions for navbar integration */
+.page-section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  scroll-margin-top: 70px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark mode example for scrolled state */
+.App.scrolled .App-header {
+  background-color: #1a1d23;
+  transition: background-color 0.3s ease;
 }

@@ -1,0 +1,21 @@
+.whyUs {
+    margin: 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+}
+
+.content {
+  margin:auto 0;  
+  max-width: 6000px;
+  background: transparent;
+  padding: 2rem;
+  border-radius: 0px;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+ 
+}

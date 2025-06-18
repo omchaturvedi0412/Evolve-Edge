@@ -1,0 +1,27 @@
+.bottomBanner {
+  background-color: #0f172a; 
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid #fff;
+  font-size: 1.5rem;
+}
+
+.highlight {
+  font-weight: bold;
+  text-decoration: underline; 
+}
+
+.contactButton {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  background: linear-gradient(to right, rgba(73, 212, 255, 1), rgba(41, 135, 164, 1));
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-family: Palanquin;
+}

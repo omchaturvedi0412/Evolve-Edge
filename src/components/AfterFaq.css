@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(15, 23, 42, 1);
+}
+
+.container {
+    margin: 2rem 1rem;
+    padding: 0 1rem;
+}
+
+.Para {
+    text-align: center;
+}
+
+.firstPara {
+    font-size: 1rem; /* Smaller base size */
+    font-weight: 500;
+    padding: 1.5rem 1rem; /* Reduced padding */
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.6;
+}
+
+.collabrateContainer {
+    position: relative;
+    margin: 2rem 0; /* Reduced margin */
+    padding: 0 1rem;
+}
+
+.collabrate {
+    font-size: 1.5rem; /* Smaller heading */
+    font-weight: 700;
+    margin-bottom: 2rem; /* Reduced margin */
+    position: relative;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.3;
+    z-index: 2;
+}
+
+.deco {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("../assets/images/decoration1.png");
+    z-index: 1;
+}
+
+.deco-left {
+    left: -30px; /* Adjusted position */
+    bottom: 5px;
+    width: 150px; /* Smaller decoration */
+    height: 130px;
+}
+
+.deco-right {
+    right: -30px;
+    bottom: -30px;
+    transform: rotate(-24.87deg);
+    width: 80px; /* Smaller decoration */
+    height: 80px;
+}
+
+.containBread {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem; /* Reduced gap */
+    margin: 1.5rem 0; /* Reduced margin */
+    flex-wrap: wrap;
+}
+
+.bread {
+    width: 80px; /* Smaller bread images */
+    height: 140px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.breadOne {
+    background-image: url("../assets/images/bread.png");
+}
+
+.breadTwo {
+    background-image: url("../assets/images/bread2.png");
+}
+
+.lastContainer {
+    padding: 0 1rem;
+}
+
+.lastPara {
+    color: #000;
+    font-weight: 400;
+    font-size: 1rem; /* Smaller text */
+    background: linear-gradient(#FFDC6B, #D7B547);
+    padding: 1.5rem 1rem; /* Reduced padding */
+    line-height: 1.6;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem; /* Reduced margin */
+}
+
+.enquire {
+    background: linear-gradient(#49D4FF, #2987A4);
+    width: 140px; /* Smaller button */
+    height: 45px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 400;
+    font-size: 0.9rem; /* Smaller text */
+    margin: 0.8rem 0; /* Reduced margin */
+    border: 0px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.enquire:hover {
+    transform: scale(1.05);
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .container {
+        margin: 2rem 3rem;
+    }
+
+    .firstPara {
+        font-size: 1.2rem; /* Adjusted */
+        padding: 2rem 1.5rem; /* Adjusted */
+    }
+
+    .collabrate {
+        font-size: 2rem; /* Adjusted */
+    }
+
+    .bread {
+        width: 110px; /* Adjusted */
+        height: 190px;
+    }
+
+    .deco-left {
+        left: -60px;
+        width: 250px; /* Adjusted */
+        height: 210px;
+    }
+
+    .deco-right {
+        right: -60px;
+        bottom: -50px;
+        width: 120px; /* Adjusted */
+        height: 120px;
+    }
+
+    .lastPara {
+        font-size: 1.1rem; /* Adjusted */
+        padding: 2rem 1.5rem; /* Adjusted */
+    }
+
+    .enquire {
+        width: 160px; /* Adjusted */
+        height: 50px;
+        font-size: 1rem; /* Adjusted */
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .container {
+        margin: 2rem 4rem;
+    }
+
+    .firstPara {
+        font-size: 1.3rem; /* Adjusted */
+        padding: 3rem 2rem; /* Adjusted */
+    }
+
+    .collabrate {
+        font-size: 2.5rem; /* Adjusted */
+    }
+
+    .bread {
+        width: 130px; /* Adjusted */
+        height: 225px;
+    }
+
+    .deco-left {
+        left: -90px;
+        width: 350px; /* Adjusted */
+        height: 300px;
+    }
+
+    .deco-right {
+        right: -80px;
+        bottom: -70px;
+        width: 160px; /* Adjusted */
+        height: 170px;
+    }
+
+    .lastPara {
+        font-size: 1.2rem; /* Adjusted */
+        padding: 3rem 4rem; /* Adjusted */
+    }
+
+    .enquire {
+        width: 180px; /* Adjusted */
+        height: 55px;
+        font-size: 1.1rem; /* Adjusted */
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .firstPara {
+        padding: 3rem 5rem; /* Adjusted */
+        font-size: 1.4rem; /* Adjusted */
+    }
+
+    .collabrate {
+        font-size: 3rem; /* Adjusted */
+    }
+
+    .lastPara {
+        padding: 3rem 8rem; /* Adjusted */
+        font-size: 1.3rem; /* Adjusted */
+    }
+}
