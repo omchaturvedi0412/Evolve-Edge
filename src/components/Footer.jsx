@@ -18,7 +18,7 @@ const Footer = () => {
         <div className={styles.column}>
           <h4>Get in Touch</h4>
           <ul>
-            <li><a href="#">Book a Call</a></li>
+            
             <li><a href="#">Submit an Enquiry</a></li>
             <li>Contact us:</li>
             <li><a href="tel:+91xxxxxxxxxx">IND: 📱 +91 xxxxxxxxxx</a></li>

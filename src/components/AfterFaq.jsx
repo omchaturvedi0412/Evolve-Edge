@@ -1,6 +1,13 @@
-import './AfterFaq.css'
+import { useNavigate } from 'react-router-dom';
+import './AfterFaq.css';
 
 function AfterFaq() {
+    const navigate = useNavigate();
+
+    const handleEnquireClick = () => {
+        navigate('/contact');
+    };
+
     return (
         <div className='mainContainer'>
             <div className='container'>
@@ -27,12 +34,12 @@ function AfterFaq() {
                     Ready to bring your project to life? Our team of experts is here to help. Request a quote today
                     to get started or begin a conversation to learn more about our services.
                     We pride ourselves on delivering high-quality work at reasonable cost. Don't wait – let's get started!
-                    <div className='buttonContainer'>
-                        <button className='enquire'>
-                            Enquire Now
-                        </button>
-                    </div>
                 </p>
+                <div className='buttonContainer'>
+                    <button className='enquire' onClick={handleEnquireClick}>
+                        Enquire Now
+                    </button>
+                </div>
             </div>
         </div>
     )

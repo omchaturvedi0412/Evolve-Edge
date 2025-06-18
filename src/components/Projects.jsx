@@ -44,9 +44,9 @@ function Projects() {
                     </p>
                 </div>
             </div>
-            <section id="projects" className="services">
+            <section id="projects" className="projects-section">
                 <h2>Our Projects</h2>
-                <div className="services-container">
+                <div className="projects-container">
                     {projectsData.map((project, index) => (
                         <ProjectCard
                             key={index}

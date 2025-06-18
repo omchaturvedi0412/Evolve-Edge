@@ -8,6 +8,28 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
+  const handleHomeClick = () => {
+    if (window.location.pathname === "/") {
+      const heroSection = document.getElementById("hero");
+      if (heroSection) {
+        heroSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else {
+      navigate("/");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleContactClick = () => {
+    navigate("/contact");
+    // Scroll to top after navigation is complete
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  };
+
   const scrollToSection = (id) => {
     if (window.location.pathname !== "/") {
       navigate("/");
@@ -40,18 +62,18 @@ const Navbar = () => {
   return (
     <div className="navbar-wrapper">
       <div className="navbar-logo-static">
-        <img src={Logo} alt="Logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }} />
+        <img src={Logo} alt="Logo" onClick={handleHomeClick} style={{ cursor: "pointer" }} />
       </div>
       
       <div className={`navbar-container ${showNavbar ? "visible" : "hidden"}`}>
         <nav className="navbar">
           <ul className="navbar-links">
-            <li onClick={() => navigate("/")}>Home</li>
+            <li onClick={handleHomeClick}>Home</li>
             <li onClick={() => scrollToSection("about")}>About</li>
             <li onClick={() => scrollToSection("services")}>Services</li>
             <li onClick={() => navigate("/projects")}>Projects</li>
             <li onClick={() => scrollToSection("faq")}>FAQ's</li>
-            <li onClick={() => navigate("/contact")}>Contact</li>
+            <li onClick={handleContactClick}>Contact</li>
           </ul>
         </nav>
       </div>

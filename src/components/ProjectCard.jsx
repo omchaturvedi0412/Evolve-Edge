@@ -9,31 +9,27 @@ const ProjectCard = ({
     cardDescription 
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
 
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
 
-    const handleCloseModal = () => {
+    const handleCloseModal = (e) => {
+        e.stopPropagation();
         setIsModalOpen(false);
     };
 
     return (
         <>
-            <div className="service-card" onClick={handleCardClick}>
+            <div className="project-card" onClick={handleCardClick}>
                 <img src={thumbnail} alt="Thumbnail" className="thumbnail" />
                 <h3>{cardTitle}</h3>
                 <p>{cardDescription}</p>
             </div>
 
             {isModalOpen && (
-                <div className="modal-overlay">
-                    <div 
-                        className="video-modal"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
+                <div className="modal-overlay" onClick={handleCloseModal}>
+                    <div className="video-modal" onClick={(e) => e.stopPropagation()}>
                         <button className="close-button" onClick={handleCloseModal}>
                             &times;
                         </button>
@@ -44,13 +40,12 @@ const ProjectCard = ({
                             </div>
                         </div>
                         <video 
-                            autoPlay={isHovered}
+                            autoPlay
                             loop 
                             muted
                             playsInline
                             controls
                             className="custom-video-player"
-                            style={{ backgroundColor: 'black' }}
                         >
                             <source src={videoSrc} type="video/mp4" />
                             Your browser does not support the video tag.

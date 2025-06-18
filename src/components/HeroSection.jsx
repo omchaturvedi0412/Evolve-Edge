@@ -4,11 +4,17 @@ import robotImage from "../assets/images/Robot.png";
 import vrGuyImage from "../assets/images/vrguy.png";
 import visionImage from "../assets/images/vision.png";
 import missionImage from "../assets/images/mission.png";
-
 import VectorBlue from "../assets/images/VectorBlue.png";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom"; // Add this import
 
 const HeroSection = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleEnquireClick = () => {
+    navigate("/contact"); // Navigate to contact page
+  };
+
   return (
     <div className="hero-wrapper">
       <Navbar />
@@ -16,10 +22,8 @@ const HeroSection = () => {
       <section className="hero">
         <div className="hero-left">
           <div className="hero-quote">
-            
             <div className="robot-container">
               <img className="robot-image" src={robotImage} alt="Robot" />
-              
             </div>
             <p className="hero-text">"A space where innovation meets implementation."</p>
           </div>
@@ -36,7 +40,9 @@ const HeroSection = () => {
               <img className="vrGuy" src={vrGuyImage} alt="VR Guy" />
             </div>
 
-            <button className="enquire-button">Enquire Now</button>
+            <button className="enquire-button" onClick={handleEnquireClick}>
+              Enquire Now
+            </button>
           </div>
         </div>
 
