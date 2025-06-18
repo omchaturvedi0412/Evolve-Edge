@@ -17,6 +17,15 @@ const HomeServices = () => {
   const [positions, setPositions] = useState([]);
   const animationFrameRef = useRef(null);
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Function to initialize Matter.js world
   const initPhysics = () => {
@@ -34,8 +43,12 @@ const HomeServices = () => {
 
     Matter.World.add(world, [ground, leftWall, rightWall]);
 
+    // Adjust base radius based on screen size
+    const baseRadius = windowWidth < 768 ? 30 : 65;
+    const sizeVariation = windowWidth < 768 ? 15 : 20;
+
     const bodies = services.map((service, index) => {
-      const radius = 65 + Math.random() * 20;
+      const radius = baseRadius + Math.random() * sizeVariation;
       const body = Matter.Bodies.circle(
         100 + Math.random() * (width - 200),
         -index * 40,
@@ -104,7 +117,7 @@ const HomeServices = () => {
       }
       cleanup();
     };
-  }, []);
+  }, [windowWidth]); // Add windowWidth as dependency to re-init on resize
 
   const handleExploreClick = () => {
     navigate("/services");
@@ -116,10 +129,13 @@ const HomeServices = () => {
         <h2 className={styles.title}>SERVICES.</h2>
       </div>
 
-      <div className={styles.contentContainer} ref={containerRef}>
+      <div 
+  className={`${styles.contentContainer} ${windowWidth < 768 ? styles.mobileHeight : ''}`} 
+  ref={containerRef}
+>
         <p className={styles.subtitle}>
           From UI/UX to web to 3D — we do it all with purpose.
-          Your vision, powered by our expertise and execution.
+          Your vision, powered by our expertise and execution.
         </p>
 
         <div className={styles.ballWrapper}>
@@ -132,6 +148,7 @@ const HomeServices = () => {
                 height: `${circle.r * 2}px`,
                 left: `${circle.x - circle.r}px`,
                 top: `${circle.y - circle.r}px`,
+                fontSize: `${Math.max(8, circle.r * 0.3)}px` // Dynamic font size based on ball size
               }}
             >
               <span>{circle.label}</span>

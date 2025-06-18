@@ -5,14 +5,17 @@ import vrGuyImage from "../assets/images/vrguy.png";
 import visionImage from "../assets/images/vision.png";
 import missionImage from "../assets/images/mission.png";
 import VectorBlue from "../assets/images/VectorBlue.png";
+import Vector from "../assets/images/Vector.png";
+import VectorDown from "../assets/images/Vector-down.png";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom"; // Add this import
+import { useNavigate } from "react-router-dom";
+import TypeWriter from './TypeWriter';
 
 const HeroSection = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   const handleEnquireClick = () => {
-    navigate("/contact"); // Navigate to contact page
+    navigate("/contact");
   };
 
   return (
@@ -22,9 +25,11 @@ const HeroSection = () => {
       <section className="hero">
         <div className="hero-left">
           <div className="hero-quote">
+            <img className="vector-image" src={Vector} alt="Vector Background" />
             <div className="robot-container">
               <img className="robot-image" src={robotImage} alt="Robot" />
             </div>
+            <img className="vector-down-image" src={VectorDown} alt="VectorDown" />
             <p className="hero-text">"A space where innovation meets implementation."</p>
           </div>
         </div>
@@ -48,7 +53,7 @@ const HeroSection = () => {
 
         <div className="content-box">
           <div className="vision">
-            <h2>VISION.</h2>
+            <TypeWriter text="VISION..." />
             <div className="vision-content">
               <img src={visionImage} alt="Vision" className="vision-img" />
               <p>
@@ -58,7 +63,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="mission">
-            <h2>MISSION.</h2>
+            <TypeWriter text="MISSION..." />
             <div className="mission-content with-bg">
               <img src={missionImage} alt="Mission" className="mission-bg" />
               <ul>
@@ -68,8 +73,9 @@ const HeroSection = () => {
                 <li>To deliver affordable, high-impact digital solutions that reflect the spirit of innovation</li>
               </ul>
             </div>
-          </div>
         </div>
+          </div>
+        
       </section>
     </div>
   );
