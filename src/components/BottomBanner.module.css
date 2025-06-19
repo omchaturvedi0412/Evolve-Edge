@@ -1,27 +1,51 @@
 .bottomBanner {
-  background-color: #0f172a; 
+  background-color: #0f172a;
   color: white;
-  padding: 2rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
   text-align: center;
-  border-top: 1px solid #fff;
-  font-size: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
 }
 
 .highlight {
   font-weight: bold;
-  text-decoration: underline; 
+  text-decoration: underline;
+  color: #49d4ff;
+  text-underline-offset: 0.2em;
 }
 
 .contactButton {
-  font-size: 1.2rem;
-  margin-top: 1rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  margin-top: clamp(1rem, 3vw, 1.5rem);
   background: linear-gradient(to right, rgba(73, 212, 255, 1), rgba(41, 135, 164, 1));
   color: white;
   border: none;
-  padding: 0.6rem 1.5rem;
+  padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 4vw, 2rem);
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  font-family: inherit;
-  font-family: Palanquin;
+  font-family: 'Palanquin', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contactButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contactButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+  .bottomBanner {
+    padding: 1.5rem 1rem;
+  }
+  
+  .contactButton {
+    width: 100%;
+    max-width: 250px;
+  }
 }

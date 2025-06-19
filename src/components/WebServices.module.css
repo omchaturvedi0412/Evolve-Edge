@@ -1,66 +1,112 @@
 .webServices {
-  height: auto;
   background-color: #1486a3;
   color: white;
-  padding: 2rem;
+  padding: 2rem 1rem;
   font-family: 'Georgia', serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .title {
   text-align: center;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   margin-bottom: 2rem;
 }
 
 .servicesColumns {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .column {
   flex: 1;
-  font-size: 1.2rem;
-}
-
-.column2 {
-  flex: 1;
   min-width: 250px;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
+  max-width: 350px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .column h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .column ul {
-  text-decoration: dotted;
-  line-height: 2.5;
-  text-align: left;
+  line-height: 1.6;
+  padding-left: 1.2rem;
+}
+
+.column li {
+  margin-bottom: 0.8rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .additionalServices {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .additionalServices h3 {
-    font-size: 2rem;
-  margin-bottom: 1rem;
-  margin-right:auto ;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .extraColumns {
   display: flex;
-  gap: 15rem;
+  justify-content: center;
 }
 
 .extraColumns ul {
-  text-decoration: dotted;
-  line-height: 2.5;
-  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 1rem;
+  line-height: 1.6;
+}
+
+.extraColumns li {
+  margin-bottom: 0.8rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .servicesColumns {
+    gap: 1.5rem;
+  }
+  
+  .column {
+    min-width: 200px;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+  .webServices {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .servicesColumns {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .column {
+    width: 90%;
+    max-width: none;
+  }
+  
+  .extraColumns ul {
+    grid-template-columns: 1fr;
+  }
 }

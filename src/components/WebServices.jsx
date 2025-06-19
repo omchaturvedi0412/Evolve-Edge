@@ -18,7 +18,7 @@ const WebServices = () => {
           </ul>
         </div>
 
-        <div className={`${styles.column} ${styles.column2}`}>
+        <div className={styles.column}>
           <h3>Backend Development</h3>
           <ul>
             <li>API development and integration</li>
@@ -47,8 +47,6 @@ const WebServices = () => {
           <ul>
             <li>Performance enhancement</li>
             <li>Web accessibility improvements (WCAG)</li>
-          </ul>
-          <ul>
             <li>Maintenance & updates</li>
             <li>Custom forms, chatbots, and integrations</li>
           </ul>

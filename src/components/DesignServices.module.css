@@ -1,72 +1,87 @@
 .designServices {
-  height: auto;
-  background-color: #f9a8b4; 
+  background-color: #f9a8b4;
   color: #111;
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
   font-family: 'Georgia', serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.3;
 }
 
 .servicesColumns {
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .column {
   flex: 1;
- 
-}
-
-.column2 {
-  flex: 1;
-  min-width: 250px;
-  border-left: 2px solid #000000;
+  min-width: 300px;
+  max-width: 500px;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .column h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .column ul {
-  text-decoration: dotted;
-  line-height: 2.5;
-  text-align: left;
-  margin-left: 1.8rem; 
+  line-height: 1.6;
+  padding-left: 1.2rem;
 }
 
-.bottomBanner {
-  background-color: #0f172a; 
-  color: white;
-  padding: 2rem;
-  text-align: center;
-  margin-top: 2rem;
-  border-top: 1px solid #fff;
+.column li {
+  margin-bottom: 0.8rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  position: relative;
 }
 
-.highlight {
+.column li::before {
+  content: "•";
+  color: #000;
   font-weight: bold;
-  text-decoration: underline;
-  color: #facc15; 
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  position: absolute;
 }
 
-.contactButton {
-  margin-top: 1rem;
-  background: linear-gradient(to right, #3b82f6, #06b6d4);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: inherit;
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .servicesColumns {
+    gap: 1.5rem;
+  }
+  
+  .column {
+    min-width: 250px;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+  .designServices {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .column {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .column li {
+    margin-bottom: 0.6rem;
+  }
 }

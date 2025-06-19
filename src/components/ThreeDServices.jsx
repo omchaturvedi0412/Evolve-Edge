@@ -18,15 +18,15 @@ const ThreeDServices = () => {
           </ul>
         </div>
 
-        <div className={`${styles.column} ${styles.column2}`}>
+        <div className={styles.column}>
           <h3>3D Animation</h3>
           <ul>
-            <li>Product modeling (automotive, gadgets, etc.)</li>
-            <li>Environment and prop modeling</li>
-            <li>Architectural visualization</li>
-            <li>Low-poly & high-poly modeling</li>
-            <li>Texturing and material setup</li>
-            <li>UV mapping and unwrapping</li>
+            <li>Character animation</li>
+            <li>Product animation</li>
+            <li>Motion graphics</li>
+            <li>Rigging and skinning</li>
+            <li>Keyframe animation</li>
+            <li>Motion capture cleanup</li>
           </ul>
         </div>
 
@@ -40,9 +40,11 @@ const ThreeDServices = () => {
             <li>Green screen VFX integration</li>
           </ul>
           <h4 className={styles.toolsTitle}>Tools We Use</h4>
-          <ul>
+          <ul className={styles.toolsList}>
             <li>Blender</li>
             <li>Unreal Engine 5</li>
+            <li>Maya</li>
+            <li>Substance Painter</li>
           </ul>
         </div>
       </div>

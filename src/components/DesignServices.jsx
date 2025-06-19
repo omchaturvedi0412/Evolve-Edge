@@ -21,7 +21,7 @@ const DesignServices = () => {
           </ul>
         </div>
 
-        <div className={`${styles.column} ${styles.column2}`}>
+        <div className={styles.column}>
           <h3>Graphic Design</h3>
           <ul>
             <li>Logo design</li>
@@ -35,8 +35,6 @@ const DesignServices = () => {
           </ul>
         </div>
       </div>
-
-   
     </section>
   );
 };

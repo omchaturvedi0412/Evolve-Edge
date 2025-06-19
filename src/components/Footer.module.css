@@ -34,14 +34,30 @@
   margin-bottom: 0.75rem;
 }
 
-.column a {
+.navButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.navButton:hover {
+  color: #007bff;
+}
+
+.contactLink {
   color: inherit;
   text-decoration: none;
   transition: color 0.3s ease;
-  display: inline-block;
 }
 
-.column a:hover {
+.contactLink:hover {
   color: #007bff;
 }
 
@@ -93,5 +109,6 @@
   
   .copy {
     margin-top: 2rem;
+  font-size: 1rem;
   }
 }
