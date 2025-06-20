@@ -131,7 +131,7 @@ const HomeServices = () => {
   return (
     <section id="services" className={styles.servicesSection}>
       <div className={styles.header}>
-        <h2 className={styles.title}>SERVICES.</h2>
+        <h2 className={styles.title}>SERVICES...</h2>
       </div>
 
       <div 

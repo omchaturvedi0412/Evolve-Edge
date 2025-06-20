@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./HeroSection.css";
 import robotImage from "../assets/images/Robot.png";
 import vrGuyImage from "../assets/images/vrguy.png";
@@ -9,14 +9,55 @@ import Vector from "../assets/images/Vector.png";
 import VectorDown from "../assets/images/Vector-down.png";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
-import TypeWriter from './TypeWriter.jsx';
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const visionRef = useRef(null);
+  const missionRef = useRef(null);
+  const [visionText, setVisionText] = useState("");
+  const [missionText, setMissionText] = useState("");
 
   const handleEnquireClick = () => {
     navigate("/contact");
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            const text = target.dataset.text;
+            let current = 0;
+            
+            const interval = setInterval(() => {
+              if (current < text.length) {
+                if (target === visionRef.current) {
+                  setVisionText(text.slice(0, current + 1));
+                } else {
+                  setMissionText(text.slice(0, current + 1));
+                }
+                current++;
+              } else {
+                clearInterval(interval);
+              }
+            }, 60); // Adjust typing speed here
+
+            observer.unobserve(target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (visionRef.current) observer.observe(visionRef.current);
+    if (missionRef.current) observer.observe(missionRef.current);
+
+    return () => {
+      if (visionRef.current) observer.unobserve(visionRef.current);
+      if (missionRef.current) observer.unobserve(missionRef.current);
+    };
+  }, []);
 
   return (
     <div className="hero-wrapper">
@@ -53,7 +94,7 @@ const HeroSection = () => {
 
         <div className="content-box">
           <div className="vision">
-            <TypeWriter text="VISION..." />
+            <h2 ref={visionRef} data-text="VISION...">{visionText}</h2>
             <div className="vision-content">
               <img src={visionImage} alt="Vision" className="vision-img" />
               <p>
@@ -63,7 +104,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="mission">
-            <TypeWriter text="MISSION..." />
+            <h2 ref={missionRef} data-text="MISSION...">{missionText}</h2>
             <div className="mission-content with-bg">
               <img src={missionImage} alt="Mission" className="mission-bg" />
               <ul>

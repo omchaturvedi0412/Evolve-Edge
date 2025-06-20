@@ -17,9 +17,10 @@
 .shape {
   position: absolute;
   z-index: 1; /* was 0 earlier — now it layers above background */
-  opacity: 0.3;
+  opacity: 0.9;
   pointer-events: none;
   max-width: 100px;
+  
 }
 
 /* Individually positioned shapes */
@@ -28,6 +29,7 @@
   left: 30px;
   width: 90px;
   animation: float 4s ease-in-out infinite;
+  animation: rotate 20s linear infinite;
 }
 
 .shape-triangle {
@@ -44,6 +46,7 @@
   left: 50px;
   width: 100px;
   animation: float 6s ease-in-out infinite;
+  animation: rotate 20s linear infinite;
 }
 
 .shape-cube {
@@ -58,6 +61,7 @@
   right: 600px;
   width: 90px;
    animation: float 5s ease-in-out infinite;
+   animation: rotate 20s linear infinite;
 }
 
 /* Left Content */

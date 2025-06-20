@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./WhyChooseUs.css";
 
 const WhyChooseUs = () => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
   const features = [
     { title: "Innovative", subtitle: "Minds", direction: "left" },
     { title: "Quality-Driven", subtitle: "", direction: "left" },
@@ -13,6 +15,19 @@ const WhyChooseUs = () => {
   ];
 
   const gridRef = useRef(null);
+  const headingText = "WHY CHOOSE US?";
+
+  useEffect(() => {
+    // Typing effect for heading
+    if (currentIndex < headingText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + headingText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 100); // Adjust typing speed here (milliseconds per character)
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, headingText]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +68,10 @@ const WhyChooseUs = () => {
 
   return (
     <div className="why-choose-us">
-      <h2 className="section-title">WHY CHOOSE US?</h2>
+      <h2 className="section-title">
+  {displayText}
+  {currentIndex < headingText.length && <span className="typing-cursor">|</span>}
+</h2>
       <div className="features-grid" ref={gridRef}>
         {features.map((feature, index) => (
           <div
