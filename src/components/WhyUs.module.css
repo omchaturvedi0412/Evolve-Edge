@@ -1,21 +1,35 @@
 .whyUs {
-    margin: 0%;
+  margin: 0;
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
   position: relative;
   min-height: 90vh;
   display: flex;
+  align-items: flex-start; /* Align content to top */
+  padding-top: 4rem; /* Push content slightly down from top */
 }
 
 .content {
-  margin:auto 0;  
   max-width: 6000px;
   background: transparent;
   padding: 2rem;
   border-radius: 0px;
-  font-size: 1rem;
+  font-size: 20px !important;
   line-height: 1.5;
   text-align: left;
- 
+  margin: 0; /* remove auto vertical centering */
+}
+
+.content p {
+  font-size: inherit !important;
+  margin: 0;
+  padding: 0;
+}
+
+.leftHeading {
+  text-align: left;
+  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+  color: rgba(20, 143, 181, 1);
+  margin: 2rem 0 1rem 0;
 }

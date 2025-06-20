@@ -37,9 +37,10 @@
 }
 
 p { 
-    font-size: 24px;
-    font-weight: 400;
-    padding: 0 2rem;
+    font-size: 18px; /* Reduced from 24px */
+  font-weight: 400;
+  padding: 0 2rem;
+  line-height: 1.6; /* Added for better readability */
 }
 
 section {
@@ -223,4 +224,14 @@ section {
 
 .project-card:hover .thumbnail {
   transform: scale(1.03);
+}
+@media (max-width: 768px) {
+  p {
+    font-size: 16px; /* Even smaller on mobile */
+    padding: 0 1rem; /* Reduced padding on mobile */
+  }
+  
+  .heading>p::after {
+    display: none; /* This will hide the yellow line on mobile */
+  }
 }

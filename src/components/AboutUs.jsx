@@ -21,7 +21,7 @@ const AboutUs = () => {
             </p>
           </div>
         </div>
-        <h1 className={styles.leftHeading}>WHO ARE WE?</h1>
+        
       </div>
     </section>
   );

@@ -52,17 +52,42 @@
   font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
-.toolsTitle {
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
+.toolsContainer {
+  margin-top: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto; /* Changed from 30% to auto */
+  width: 100%; /* Added to ensure full width */
+  padding: 0 1rem; /* Added for better spacing on mobile */
+}
+
+.toolsContainer h3 {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .toolsList {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Added to ensure full width */
 }
+
+.toolsList li {
+ margin-bottom: 0.8rem;
+  font-size: clamp(1.2rem, 1.5vw, 1rem);
+}
+.toolsList ul {
+display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 0;
+  line-height: 1.6;
+  margin: 0 auto; /* Center the grid */
+  text-align: center; /* Center the text */
+  list-style-position: inside; /* Align bullets with text */}
 
 /* Medium screens (tablets) */
 @media (max-width: 768px) {
@@ -72,6 +97,10 @@
   
   .column {
     min-width: 200px;
+  }
+  
+  .toolsList {
+    gap: 1.5rem;
   }
 }
 
@@ -89,5 +118,23 @@
   .column {
     width: 90%;
     max-width: none;
+  }
+  
+  .toolsList {
+    gap: 1rem;
+  }
+  
+  .toolsList ul {
+    grid-template-columns: 1fr;
+    text-align: left; /* Changed from center to left */
+    list-style-position: outside; /* Bullets outside the text flow */
+    padding-left: 1rem; /* Add some left padding */
+    margin: 0; /* Remove auto margin to align left */
+    max-width: 100%; /* Take full width */
+  }
+
+  .toolsList li {
+    padding: 0rem 0; /* Adjusted padding */
+    margin-left: 1rem; /* Space for bullets */
   }
 }

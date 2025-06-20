@@ -39,12 +39,17 @@ const ThreeDServices = () => {
             <li>Compositing with video footage</li>
             <li>Green screen VFX integration</li>
           </ul>
-          <h4 className={styles.toolsTitle}>Tools We Use</h4>
-          <ul className={styles.toolsList}>
-            <li>Blender</li>
-            <li>Unreal Engine 5</li>
-            <li>Maya</li>
-            <li>Substance Painter</li>
+        </div>
+      </div>
+      
+      <div className={styles.toolsContainer}>
+        <h3>TOOLS WE USE</h3>
+        <div className={styles.toolsList}>
+          <ul>
+          <li >Blender</li>
+          <li >Unreal Engine 5</li>
+          <li >Maya</li>
+          <li >Substance Painter</li>
           </ul>
         </div>
       </div>

@@ -22,7 +22,24 @@ const Footer = () => {
           }
         }, 100);
       }
+    } else if (path === '/#about') {
+      // For About section on main page
+      if (window.location.pathname === '/') {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate('/');
+        setTimeout(() => {
+          const aboutSection = document.getElementById('about');
+          if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
     } else {
+      // For regular navigation (services, projects)
       navigate(path);
       window.scrollTo(0, 0);
     }
@@ -35,7 +52,7 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li><button className={styles.navButton} onClick={() => handleNavigation('/')}>Home</button></li>
-            
+            <li><button className={styles.navButton} onClick={() => handleNavigation('/#about')}>About</button></li>
             <li><button className={styles.navButton} onClick={() => handleNavigation('/services')}>Services</button></li>
             <li><button className={styles.navButton} onClick={() => handleNavigation('/projects')}>Projects</button></li>
             <li><button className={styles.navButton} onClick={() => handleNavigation('/#faq')}>FAQs</button></li>

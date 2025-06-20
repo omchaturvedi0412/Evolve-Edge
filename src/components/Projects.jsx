@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard";
 import project1thumbnail from "../assets/images/project1.png";
 import project1Video from "../assets/images/project1.mp4";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function Projects() {
     const projectsData = [
@@ -27,7 +28,7 @@ function Projects() {
     return (
         <>
             <Navbar />
-            <div style={{ textAlign: "center", paddingTop: "80px" }}>
+            <div style={{ textAlign: "center", paddingTop: "0px", paddingBottom: "50px" }}>
                 <div>
                     <div className="heading">
                         <p>Selected Projects</p>
@@ -61,6 +62,7 @@ function Projects() {
                     ))}
                 </div>
             </section>
+            <Footer />
         </>
     )
 }

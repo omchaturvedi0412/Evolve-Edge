@@ -117,10 +117,15 @@ const HomeServices = () => {
       }
       cleanup();
     };
-  }, [windowWidth]); // Add windowWidth as dependency to re-init on resize
+  }, [windowWidth]);
 
   const handleExploreClick = () => {
     navigate("/services");
+    // Scroll to top immediately
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -130,9 +135,9 @@ const HomeServices = () => {
       </div>
 
       <div 
-  className={`${styles.contentContainer} ${windowWidth < 768 ? styles.mobileHeight : ''}`} 
-  ref={containerRef}
->
+        className={`${styles.contentContainer} ${windowWidth < 768 ? styles.mobileHeight : ''}`} 
+        ref={containerRef}
+      >
         <p className={styles.subtitle}>
           From UI/UX to web to 3D — we do it all with purpose.
           Your vision, powered by our expertise and execution.
@@ -148,7 +153,7 @@ const HomeServices = () => {
                 height: `${circle.r * 2}px`,
                 left: `${circle.x - circle.r}px`,
                 top: `${circle.y - circle.r}px`,
-                fontSize: `${Math.max(8, circle.r * 0.3)}px` // Dynamic font size based on ball size
+                fontSize: `${Math.max(8, circle.r * 0.3)}px`
               }}
             >
               <span>{circle.label}</span>

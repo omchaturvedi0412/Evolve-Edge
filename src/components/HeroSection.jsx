@@ -9,7 +9,7 @@ import Vector from "../assets/images/Vector.png";
 import VectorDown from "../assets/images/Vector-down.png";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
-import TypeWriter from './TypeWriter';
+import TypeWriter from './TypeWriter.jsx';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -73,9 +73,8 @@ const HeroSection = () => {
                 <li>To deliver affordable, high-impact digital solutions that reflect the spirit of innovation</li>
               </ul>
             </div>
-        </div>
           </div>
-        
+        </div>
       </section>
     </div>
   );
