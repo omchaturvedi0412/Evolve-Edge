@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Import all shapes
 import sphere from "../assets/images/sphere.png";
 import triangle from "../assets/images/triangle.png";
 import pinkCube from "../assets/images/PinkCube.png";
@@ -13,7 +12,6 @@ import cube from "../assets/images/cube.png";
 import cone from "../assets/images/cone.png";
 
 const ContactUs = () => {
-  // State
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [service, setService] = useState("");
@@ -22,7 +20,6 @@ const ContactUs = () => {
   const [referral, setReferral] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Validate email
   const validateEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
   };
@@ -30,7 +27,6 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
     if (!name || !email || !message) {
       toast.error("Name, Email, and Message are required.");
       return;
@@ -41,19 +37,11 @@ const ContactUs = () => {
       return;
     }
 
-    const formData = {
-      name,
-      email,
-      service,
-      message,
-      urgency,
-      referral,
-    };
-
+    const formData = { name, email, service, message, urgency, referral };
     setLoading(true);
 
     try {
-      const res = await fetch("https://evolve-edge-backend.onrender.com", {
+      const res = await fetch("https://evolve-edge-backend.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -64,8 +52,6 @@ const ContactUs = () => {
 
       if (data.success) {
         toast.success("Your message was sent successfully!");
-
-        // Clear form
         setName("");
         setEmail("");
         setService("");
@@ -87,14 +73,12 @@ const ContactUs = () => {
       <Navbar />
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="contact-container">
-        {/* Shapes */}
         <img src={sphere} alt="Sphere" className="shape shape-sphere" />
         <img src={triangle} alt="Triangle" className="shape shape-triangle" />
         <img src={pinkCube} alt="Pink Cube" className="shape shape-pinkCube" />
         <img src={cube} alt="Cube" className="shape shape-cube" />
         <img src={cone} alt="Cone" className="shape shape-cone" />
 
-        {/* Left */}
         <div className="contact-left">
           <h2>
             <span className="highlight-blue">Submit Your Project</span> &<br />
@@ -107,7 +91,6 @@ const ContactUs = () => {
           </p>
         </div>
 
-        {/* Right */}
         <div className="contact-right">
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="row">
@@ -151,13 +134,8 @@ const ContactUs = () => {
               value={referral}
               onChange={(e) => setReferral(e.target.value)}
             />
-
             <button type="submit" disabled={loading}>
-               {loading ? (
-    <div className="spinner-techy"></div>
-  ) : (
-    "SUBMIT"
-  )}
+              {loading ? <div className="spinner-techy"></div> : "SUBMIT"}
             </button>
           </form>
         </div>

@@ -7,20 +7,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Test Route
+app.get("/", (req, res) => {
+  res.send("Server is up and running");
+});
+
+// ✅ Contact Form Handler
 app.post('/api/contact', async (req, res) => {
   const { name, email, service, message, urgency, referral } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: process.env.EMAIL_USER,     // Your Gmail
+      pass: process.env.EMAIL_PASS,     // App Password
     },
   });
 
   const mailOptions = {
     from: `"${name}" <${email}>`,
-    to: process.env.TO_EMAIL,
+    to: process.env.TO_EMAIL,           // Your receiving email
     subject: `New Contact Form Submission from ${name}`,
     html: `
       <h2>New Contact Form Submission</h2>
