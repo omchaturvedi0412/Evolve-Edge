@@ -18,6 +18,13 @@ const HomeServices = () => {
   const animationFrameRef = useRef(null);
   const navigate = useNavigate();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  // Typing effect state
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const titleRef = useRef(null);
+  const headingText = "SERVICES...";
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,6 +32,54 @@ const HomeServices = () => {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Typing effect with IntersectionObserver for heading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Reset animation when element comes into view
+            setDisplayText("");
+            setCurrentIndex(0);
+            setShowCursor(true);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
+    };
+  }, []);
+
+  // Typing effect animation
+  useEffect(() => {
+    if (currentIndex < headingText.length) {
+      const typingTimeout = setTimeout(() => {
+        setDisplayText(prev => prev + headingText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 100); // Typing speed (100ms per character)
+
+      return () => clearTimeout(typingTimeout);
+    }
+  }, [currentIndex, headingText]);
+
+  // Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500); // Blink speed (500ms)
+
+    return () => clearInterval(cursorInterval);
   }, []);
 
   // Function to initialize Matter.js world
@@ -131,7 +186,15 @@ const HomeServices = () => {
   return (
     <section id="services" className={styles.servicesSection}>
       <div className={styles.header}>
-        <h2 className={styles.title}>SERVICES...</h2>
+        <h2 ref={titleRef} className={styles.title}>
+          {displayText}
+          <span 
+            className={styles.typingCursor} 
+            style={{ opacity: showCursor && currentIndex < headingText.length ? 1 : 0 }}
+          >
+            |
+          </span>
+        </h2>
       </div>
 
       <div 

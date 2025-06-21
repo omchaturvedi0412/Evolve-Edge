@@ -4,33 +4,34 @@ import aboutImage from '../assets/images/aboutimg.png';
 
 const AboutUs = () => {
   const [typedText, setTypedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
   const fullText = "ABOUT US....";
   const titleRef = useRef(null);
   const containerRef = useRef(null);
   const observerRef = useRef(null);
   const intervalRef = useRef(null);
+  const cursorIntervalRef = useRef(null);
 
   useEffect(() => {
-    // Typing animation for title
+    // Typing animation with IntersectionObserver
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // Reset animation when element comes into view
           setTypedText("");
+          setShowCursor(true);
+          
           let current = 0;
           clearInterval(intervalRef.current);
+          
           intervalRef.current = setInterval(() => {
-            setTypedText((prev) => {
-              if (current < fullText.length) {
-                current++;
-                return fullText.slice(0, current);
-              } else {
-                clearInterval(intervalRef.current);
-                return prev;
-              }
-            });
-          }, 60);
-        } else {
-          clearInterval(intervalRef.current);
+            if (current < fullText.length) {
+              setTypedText(fullText.slice(0, current + 1));
+              current++;
+            } else {
+              clearInterval(intervalRef.current);
+            }
+          }, 100); // Adjust typing speed here
         }
       },
       { threshold: 0.5 }
@@ -39,6 +40,11 @@ const AboutUs = () => {
     if (titleRef.current) {
       observerRef.current.observe(titleRef.current);
     }
+
+    // Cursor blink effect
+    cursorIntervalRef.current = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
 
     // Holographic animation observer
     const containerObserver = new IntersectionObserver((entries) => {
@@ -60,6 +66,7 @@ const AboutUs = () => {
         observerRef.current.unobserve(titleRef.current);
       }
       clearInterval(intervalRef.current);
+      clearInterval(cursorIntervalRef.current);
       if (containerRef.current) {
         containerObserver.unobserve(containerRef.current);
       }
@@ -71,6 +78,12 @@ const AboutUs = () => {
       <div className={styles.sectionContent}>
         <h1 className={styles.leftHeading} ref={titleRef}>
           {typedText}
+          <span 
+            className={styles.typingCursor} 
+            style={{ opacity: showCursor && typedText.length < fullText.length ? 1 : 0 }}
+          >
+            |
+          </span>
         </h1>
         <div className={styles.aboutContainer} ref={containerRef}>
           <div className={styles.aboutImageWrapper}>

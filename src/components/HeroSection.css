@@ -228,12 +228,21 @@
   }
 
   .vision-img {
-    width: 100%;
-    max-width: clamp(150px, 20vw, 250px);
-    height: auto;
-    border-radius: 10px;
-  }
-
+  width: 100%;
+  max-width: clamp(150px, 20vw, 250px);
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  margin-right: clamp(1rem, 2vw, 2rem);
+  align-self: center;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.vision-img.visible {
+  transform: scale(1);
+  opacity: 1;
+}
   .mission-content.with-bg {
     position: relative;
     padding: clamp(1rem, 2vw, 2rem);
@@ -309,6 +318,10 @@
       margin: 1rem auto 0;
       display: block;
     }
+    .vision-img {
+    max-width: 200px;
+    margin: 0 auto 1.5rem;
+  }
   }
 
   /* Large desktop adjustments */
@@ -338,6 +351,15 @@
     typing 3.5s steps(40, end),
     blink-caret 0.75s step-end infinite;
 }
+.typewriter {
+  position: relative;
+  display: inline-block;
+}
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--accent-blue);
+  font-weight: bold;
+}
 
 /* The typing effect */
 @keyframes typing {
@@ -349,4 +371,39 @@
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: var(--accent-blue); }
+}
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+.vision-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: flex-start;
+}
+@media (min-width: 768px) {
+  .vision-content {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Mission Content Layout */
+.mission-content ul {
+  position: relative;
+  z-index: 2;
+  color: var(--text-white);
+  list-style-type: disc;
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  margin-left: 0;
+}
+
+.mission-content li {
+  margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
 }

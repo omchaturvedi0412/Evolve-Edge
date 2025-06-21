@@ -4,6 +4,10 @@ import "./WhyChooseUs.css";
 const WhyChooseUs = () => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const headingRef = useRef(null);
+  const gridRef = useRef(null);
+  
   const features = [
     { title: "Innovative", subtitle: "Minds", direction: "left" },
     { title: "Quality-Driven", subtitle: "", direction: "left" },
@@ -14,21 +18,57 @@ const WhyChooseUs = () => {
     { title: "Collaborative", subtitle: "Approach", direction: "right" },
   ];
 
-  const gridRef = useRef(null);
   const headingText = "WHY CHOOSE US?";
 
+  // Typing effect with IntersectionObserver for heading
   useEffect(() => {
-    // Typing effect for heading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Reset animation when element comes into view
+            setDisplayText("");
+            setCurrentIndex(0);
+            setShowCursor(true);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
+
+    return () => {
+      if (headingRef.current) {
+        observer.unobserve(headingRef.current);
+      }
+    };
+  }, []);
+
+  // Typing effect animation
+  useEffect(() => {
     if (currentIndex < headingText.length) {
-      const timeout = setTimeout(() => {
+      const typingTimeout = setTimeout(() => {
         setDisplayText(prev => prev + headingText[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 100); // Adjust typing speed here (milliseconds per character)
+      }, 100); // Typing speed (100ms per character)
 
-      return () => clearTimeout(timeout);
+      return () => clearTimeout(typingTimeout);
     }
   }, [currentIndex, headingText]);
 
+  // Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500); // Blink speed (500ms)
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  // Card animation effect
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,10 +108,15 @@ const WhyChooseUs = () => {
 
   return (
     <div className="why-choose-us">
-      <h2 className="section-title">
-  {displayText}
-  {currentIndex < headingText.length && <span className="typing-cursor">|</span>}
-</h2>
+      <h2 ref={headingRef} className="section-title">
+        {displayText}
+        <span 
+          className="typing-cursor" 
+          style={{ opacity: showCursor && currentIndex < headingText.length ? 1 : 0 }}
+        >
+          |
+        </span>
+      </h2>
       <div className="features-grid" ref={gridRef}>
         {features.map((feature, index) => (
           <div

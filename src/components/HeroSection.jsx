@@ -14,48 +14,91 @@ const HeroSection = () => {
   const navigate = useNavigate();
   const visionRef = useRef(null);
   const missionRef = useRef(null);
+  const visionImgRef = useRef(null);
   const [visionText, setVisionText] = useState("");
   const [missionText, setMissionText] = useState("");
+  const [isImageVisible, setIsImageVisible] = useState(false);
 
   const handleEnquireClick = () => {
     navigate("/contact");
   };
 
+  // Typing effect for vision and mission
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const visionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const target = entry.target;
-            const text = target.dataset.text;
+            const text = entry.target.dataset.text;
             let current = 0;
             
             const interval = setInterval(() => {
               if (current < text.length) {
-                if (target === visionRef.current) {
-                  setVisionText(text.slice(0, current + 1));
-                } else {
-                  setMissionText(text.slice(0, current + 1));
-                }
+                setVisionText(text.slice(0, current + 1));
                 current++;
               } else {
                 clearInterval(interval);
               }
-            }, 60); // Adjust typing speed here
-
-            observer.unobserve(target);
+            }, 60);
           }
         });
       },
       { threshold: 0.5 }
     );
 
-    if (visionRef.current) observer.observe(visionRef.current);
-    if (missionRef.current) observer.observe(missionRef.current);
+    const missionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const text = entry.target.dataset.text;
+            let current = 0;
+            
+            const interval = setInterval(() => {
+              if (current < text.length) {
+                setMissionText(text.slice(0, current + 1));
+                current++;
+              } else {
+                clearInterval(interval);
+              }
+            }, 60);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (visionRef.current) visionObserver.observe(visionRef.current);
+    if (missionRef.current) missionObserver.observe(missionRef.current);
 
     return () => {
-      if (visionRef.current) observer.unobserve(visionRef.current);
-      if (missionRef.current) observer.unobserve(missionRef.current);
+      if (visionRef.current) visionObserver.unobserve(visionRef.current);
+      if (missionRef.current) missionObserver.unobserve(missionRef.current);
+    };
+  }, []);
+
+  // Image animation effect - triggers every time image comes into view
+  useEffect(() => {
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsImageVisible(true);
+          } else {
+            setIsImageVisible(false);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (visionImgRef.current) {
+      imageObserver.observe(visionImgRef.current);
+    }
+
+    return () => {
+      if (visionImgRef.current) {
+        imageObserver.unobserve(visionImgRef.current);
+      }
     };
   }, []);
 
@@ -94,9 +137,17 @@ const HeroSection = () => {
 
         <div className="content-box">
           <div className="vision">
-            <h2 ref={visionRef} data-text="VISION...">{visionText}</h2>
+            <h2 ref={visionRef} data-text="VISION..." className="typewriter">
+              {visionText}
+              <span className="cursor">|</span>
+            </h2>
             <div className="vision-content">
-              <img src={visionImage} alt="Vision" className="vision-img" />
+              <img 
+                ref={visionImgRef}
+                src={visionImage} 
+                alt="Vision" 
+                className={`vision-img ${isImageVisible ? 'visible' : ''}`}
+              />
               <p>
                 To become a trusted creative-technology partner for businesses and individuals by
                 delivering innovative, student-led solutions that inspire, empower, and elevate digital experiences.
@@ -104,7 +155,10 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="mission">
-            <h2 ref={missionRef} data-text="MISSION...">{missionText}</h2>
+            <h2 ref={missionRef} data-text="MISSION..." className="typewriter">
+              {missionText}
+              <span className="cursor">|</span>
+            </h2>
             <div className="mission-content with-bg">
               <img src={missionImage} alt="Mission" className="mission-bg" />
               <ul>
