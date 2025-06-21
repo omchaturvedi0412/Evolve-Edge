@@ -5,6 +5,8 @@
   color: white;
   padding: 2rem 0;
   font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  position: relative;
 }
 
 .sectionContent {
@@ -23,57 +25,245 @@
 .aboutContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 2rem;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
-@media (min-width: 768px) {
-  .aboutContainer {
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 3rem;
+.aboutContainer.holographicActive {
+  animation: hologramAppear 1.5s forwards;
+}
+
+@keyframes hologramAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(20, 143, 181, 0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 60px rgba(20, 143, 181, 0.5);
   }
 }
 
-.aboutImage {
+.aboutImageWrapper {
   flex: 1;
+  margin: 0 -5%;
+  overflow: hidden;
+}
+
+.aboutImage {
   display: flex;
   justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .aboutImage img {
   width: 100%;
-  max-width: 600px;
+  max-width: none;
   height: auto;
-  aspect-ratio: 16/9;
+  min-height: 300px;
   object-fit: cover;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  object-position: center;
+  aspect-ratio: 16/9;
+  border-radius: 0;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.holographicActive .aboutImage img {
+  border: 1px solid rgba(20, 143, 181, 0.5);
+  box-shadow: 0 0 30px rgba(20, 143, 181, 0.4);
+  filter: contrast(1.1) brightness(1.1);
+}
+
+.aboutImage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 143, 181, 0.1) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(20, 143, 181, 0.1) 100%
+  );
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.holographicActive .aboutImage::before {
+  opacity: 1;
+  animation: hologramScan 3s linear infinite;
+}
+
+@keyframes hologramScan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
 }
 
 .aboutText {
   flex: 1;
   max-width: 600px;
-  background-color: #0e5c76;
+  background-color: rgba(14, 92, 118, 0.7);
   padding: 2rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(20, 143, 181, 0.3);
+  margin: 0 5%;
+}
+
+.holographicActive .aboutText {
+  background-color: rgba(14, 92, 118, 0.5);
+}
+
+.aboutText::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(20, 143, 181, 0.6),
+    transparent
+  );
+  animation: scanline 6s linear infinite;
+  opacity: 0;
+}
+
+.holographicActive .aboutText::before {
+  opacity: 0.7;
+}
+
+@keyframes scanline {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.aboutText::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(20, 143, 181, 0.1) 50%,
+    transparent 100%
+  );
+  animation: flicker 8s linear infinite;
+  opacity: 0;
+}
+
+.holographicActive .aboutText::after {
+  opacity: 0.3;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 0.1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.3;
+  }
 }
 
 .aboutText p {
-  font-size: clamp(1rem, 2vw, 1.2rem); /* Increased from 0.85rem to 1rem base size */
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.7;
   color: #e0e0e0;
   margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .aboutContainer {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .aboutImageWrapper {
+    margin: 0;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .aboutImage img {
+    border-radius: 0 8px 8px 0;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .aboutText {
+    border-radius: 8px 0 0 8px;
+    margin: 0;
+    max-width: 50%;
+  }
 }
 
 @media (min-width: 1024px) {
   .aboutText {
     padding: 2.5rem;
+  }
+}
+
+/* Holographic particles effect */
+.holographicActive .aboutImage::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(20, 143, 181, 0.8);
+  border-radius: 50%;
+  animation: floatParticles 3s ease-in infinite;
+  box-shadow: 
+    0 0 5px 1px rgba(20, 143, 181, 0.8),
+    0 0 10px 2px rgba(20, 143, 181, 0.6);
+}
+
+@keyframes floatParticles {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
   }
 }

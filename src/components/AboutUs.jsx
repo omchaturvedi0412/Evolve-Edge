@@ -6,10 +6,12 @@ const AboutUs = () => {
   const [typedText, setTypedText] = useState("");
   const fullText = "ABOUT US....";
   const titleRef = useRef(null);
+  const containerRef = useRef(null);
   const observerRef = useRef(null);
   const intervalRef = useRef(null);
 
   useEffect(() => {
+    // Typing animation for title
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -26,7 +28,7 @@ const AboutUs = () => {
                 return prev;
               }
             });
-          }, 60); // Adjust typing speed here (60ms per character)
+          }, 60);
         } else {
           clearInterval(intervalRef.current);
         }
@@ -38,11 +40,29 @@ const AboutUs = () => {
       observerRef.current.observe(titleRef.current);
     }
 
+    // Holographic animation observer
+    const containerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.holographicActive);
+        } else {
+          entry.target.classList.remove(styles.holographicActive);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (containerRef.current) {
+      containerObserver.observe(containerRef.current);
+    }
+
     return () => {
       if (observerRef.current && titleRef.current) {
         observerRef.current.unobserve(titleRef.current);
       }
       clearInterval(intervalRef.current);
+      if (containerRef.current) {
+        containerObserver.unobserve(containerRef.current);
+      }
     };
   }, []);
 
@@ -52,12 +72,14 @@ const AboutUs = () => {
         <h1 className={styles.leftHeading} ref={titleRef}>
           {typedText}
         </h1>
-        <div className={styles.aboutContainer}>
-          <div className={styles.aboutImage}>
-            <img
-              src={aboutImage}
-              alt="Team High Five"
-            />
+        <div className={styles.aboutContainer} ref={containerRef}>
+          <div className={styles.aboutImageWrapper}>
+            <div className={styles.aboutImage}>
+              <img
+                src={aboutImage}
+                alt="Team High Five"
+              />
+            </div>
           </div>
           <div className={styles.aboutText}>
             <p>
