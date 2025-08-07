@@ -1,38 +1,87 @@
 import "./Projects.css";
 import ProjectCard from "./ProjectCard";
 import project1thumbnail from "../assets/images/project1.png";
+import MovieWebsiteThumbnail from "../assets/images/MovieWebsiteThumbnail.png";
+import AnimationThumbnail from "../assets/images/AnimationThumbnail.png";
 import project1Video from "../assets/images/project1.mp4";
+import movieWebsiteVideo from "../assets/images/movie_website.mp4";
+import BMW from "../assets/images/Bmw.mp4";
+import BmwThumbnail from "../assets/images/BmwThumbnail.png";
+import Animation from "../assets/images/Animation.mp4"; // ✅ Add this import
+import God from "../assets/images/God.mp4"; // ✅ Add this import
+import Godthumbnail from "../assets/images/Godthumbnail.png";
+import Eyeliner from "../assets/images/Eyeliner.mp4";
+import Eyelinerthumbnail from "../assets/images/Eyelinerthumbnail.png";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 function Projects() {
     const projectsData = [
         {
-            cardTitle: "Shoes Website",
-            thumbnail: project1thumbnail,
+            cardTitle: "Movie Website",
+            thumbnail: MovieWebsiteThumbnail,
             cardDescription: "Landing page for a shoes website",
-            title: "A shoes website",
-            author: "",
-            videoSrc: project1Video,
+            title: "A Movie website",
+            author: "Om",
+            videoSrc: movieWebsiteVideo, // ✅ Use imported video here
+            category: "UI/UX",
         },
         {
-            cardTitle: "Shoes Website",
-            thumbnail: project1thumbnail,
-            cardDescription: "Landing page for a shoes website",
-            title: "A shoes website",
-            author: "",
-            videoSrc: project1Video,
+            cardTitle: "Animated Website",
+            thumbnail: AnimationThumbnail,
+            cardDescription: "Landing page for a Animated website",
+            title: "A Animated website",
+            author: "Om",
+            videoSrc: Animation, // ✅ Use imported video here
+            category: "UI/UX",
         },
+        {
+            cardTitle: "UI Redesign Concept",
+            thumbnail: project1thumbnail,
+            cardDescription: "Clean and modern UI/UX concept for a mobile app",
+            title: "Mobile UI/UX",
+            author: "Om",
+            videoSrc: project1Video,
+            category: "UI/UX",
+        },
+        {
+            cardTitle: "Car Animation Reel",
+            thumbnail: BmwThumbnail,
+            cardDescription: "A showcase of Car animation in 3D",
+            title: "BMW Promotion",
+            author: "Om",
+            videoSrc: BMW,
+            category: "3D",
+        },
+        {
+            cardTitle: "Animated God Statue",
+            thumbnail: Godthumbnail,
+            cardDescription: "A showcase of Animated God Statue in 3D",
+            title: "Animated God Statue",
+            author: "Om",
+            videoSrc: God,
+            category: "3D",
+        },
+        {
+            cardTitle: "Eyeliner Promotion Reel",
+            thumbnail: Eyelinerthumbnail,
+            cardDescription: "A showcase of a makup product",
+            title: "Eyeliner Promotion Reel",
+            author: "Om",
+            videoSrc: Eyeliner,
+            category: "3D",
+        },
+        
     ];
+
+    const categories = [ "UI/UX", "3D"];
 
     return (
         <>
             <Navbar />
             <div style={{ textAlign: "center", paddingTop: "0px", paddingBottom: "50px" }}>
-                <div>
-                    <div className="heading">
-                        <p>Selected Projects</p>
-                    </div>
+                <div className="heading">
+                    <p>Selected Projects</p>
                 </div>
                 <div>
                     <p>
@@ -40,31 +89,39 @@ function Projects() {
                     </p>
                     <p>
                         We include case studies that cover various areas of our expertise in web design, front-end development,
-                        UI/UX and 3D Animations. All the projects showcased below is the amazing result of
+                        UI/UX and 3D Animations. All the projects showcased below are the amazing result of
                         hard work and dedication of the teams. There are a lot of brilliant minds involved.
                     </p>
                 </div>
             </div>
+
             <section id="projects" className="projects-section">
-                <h2>Our Projects</h2>
-                <div className="projects-container">
-                    {projectsData.map((project, index) => (
-                        <ProjectCard
-                            key={index}
-                            cardTitle={project.cardTitle}
-                            cardDescription={project.cardDescription}
-                            thumbnail={project.thumbnail}
-                            title={project.title}
-                            description={project.description}
-                            videoSrc={project.videoSrc}
-                            author={project.author}
-                        />
-                    ))}
-                </div>
+                {categories.map((category) => (
+                    <div key={category} className="category-section">
+                        <h3 className="category-title">{category}</h3>
+                        <div className="projects-container">
+                            {projectsData
+                                .filter((project) => project.category === category)
+                                .map((project, index) => (
+                                    <ProjectCard
+                                        key={`${category}-${index}`}
+                                        cardTitle={project.cardTitle}
+                                        cardDescription={project.cardDescription}
+                                        thumbnail={project.thumbnail}
+                                        title={project.title}
+                                        description={project.description}
+                                        videoSrc={project.videoSrc}
+                                        author={project.author}
+                                    />
+                                ))}
+                        </div>
+                    </div>
+                ))}
             </section>
+
             <Footer />
         </>
-    )
+    );
 }
 
 export default Projects;
