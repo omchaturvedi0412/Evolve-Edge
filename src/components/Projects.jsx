@@ -12,6 +12,10 @@ import God from "../assets/images/God.mp4"; // ✅ Add this import
 import Godthumbnail from "../assets/images/Godthumbnail.png";
 import Eyeliner from "../assets/images/Eyeliner.mp4";
 import Eyelinerthumbnail from "../assets/images/Eyelinerthumbnail.png";
+
+import LandingPg from "../assets/images/LandingPg.mp4";
+import LandingThumbnail from "../assets/images/LandingThumbnail.png";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -20,9 +24,9 @@ function Projects() {
         {
             cardTitle: "Movie Website",
             thumbnail: MovieWebsiteThumbnail,
-            cardDescription: "Landing page for a shoes website",
+            cardDescription: "Landing page for a Movie website",
             title: "A Movie website",
-            author: "Om",
+            author: "",
             videoSrc: movieWebsiteVideo, // ✅ Use imported video here
             category: "UI/UX",
         },
@@ -31,17 +35,17 @@ function Projects() {
             thumbnail: AnimationThumbnail,
             cardDescription: "Landing page for a Animated website",
             title: "A Animated website",
-            author: "Om",
+            author: "",
             videoSrc: Animation, // ✅ Use imported video here
             category: "UI/UX",
         },
         {
-            cardTitle: "UI Redesign Concept",
-            thumbnail: project1thumbnail,
-            cardDescription: "Clean and modern UI/UX concept for a mobile app",
-            title: "Mobile UI/UX",
-            author: "Om",
-            videoSrc: project1Video,
+            cardTitle: "Landing Page",
+            thumbnail: LandingThumbnail,
+            cardDescription: "Landing page for a website",
+            title: "Landing Page",
+            author: "",
+            videoSrc: LandingPg,
             category: "UI/UX",
         },
         {
@@ -49,7 +53,7 @@ function Projects() {
             thumbnail: BmwThumbnail,
             cardDescription: "A showcase of Car animation in 3D",
             title: "BMW Promotion",
-            author: "Om",
+            author: "",
             videoSrc: BMW,
             category: "3D",
         },
@@ -58,7 +62,7 @@ function Projects() {
             thumbnail: Godthumbnail,
             cardDescription: "A showcase of Animated God Statue in 3D",
             title: "Animated God Statue",
-            author: "Om",
+            author: "",
             videoSrc: God,
             category: "3D",
         },
@@ -67,7 +71,7 @@ function Projects() {
             thumbnail: Eyelinerthumbnail,
             cardDescription: "A showcase of a makup product",
             title: "Eyeliner Promotion Reel",
-            author: "Om",
+            author: "",
             videoSrc: Eyeliner,
             category: "3D",
         },
