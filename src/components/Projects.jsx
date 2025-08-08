@@ -15,6 +15,12 @@ import Eyelinerthumbnail from "../assets/images/Eyelinerthumbnail.png";
 
 import LandingPg from "../assets/images/LandingPg.mp4";
 import LandingThumbnail from "../assets/images/LandingThumbnail.png";
+import FoodBook from "../assets/images/FoodBook.mp4";
+import FoodBookThumbnail from "../assets/images/FoodBookThumbnail.png";
+import iTask from "../assets/images/iTask.mp4";
+import itaskThumbnail from "../assets/images/itaskthumbnail.png";
+import TeamLane from "../assets/images/TeamLane.mp4";
+import TeamLaneThumbnail from "../assets/images/TeamLaneThumbnail.png";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -75,10 +81,37 @@ function Projects() {
             videoSrc: Eyeliner,
             category: "3D",
         },
+        {
+            cardTitle: "Food Book Website",
+            thumbnail: FoodBookThumbnail,
+            cardDescription: "A website for a food store",
+            title: "Food Book Website",
+            author: "",
+            videoSrc: FoodBook,
+            category: "Web Devlopment",
+        },
+        {
+            cardTitle: "Todo List Website",
+            thumbnail: itaskThumbnail,
+            cardDescription: "A website for your daily task",
+            title: "Todo List Website",
+            author: "",
+            videoSrc: iTask,
+            category: "Web Devlopment",
+        },
+        {
+            cardTitle: "Team Lane Website",
+            thumbnail: TeamLaneThumbnail,
+            cardDescription: "A website for collaborating with teams",
+            title: "Team Lane Website",
+            author: "",
+            videoSrc: TeamLane,
+            category: "Web Devlopment",
+        },
         
     ];
 
-    const categories = [ "UI/UX", "3D"];
+    const categories = [ "Web Devlopment","UI/UX", "3D"];
 
     return (
         <>
